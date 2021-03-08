@@ -79,4 +79,5 @@ const products = [
   },
 ]
 
-export default products
+export default products; //this is ES6 syntax
+// module.exports = products; //This is older syntax that will work out of the box with Node/Express

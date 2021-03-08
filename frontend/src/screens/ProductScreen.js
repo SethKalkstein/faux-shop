@@ -1,16 +1,18 @@
 import React from 'react';
 import { useHistory, useParams, Link } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
-import products from '../products';
+// import products from '../products';
 import Rating from '../components/Rating'
+import useGet from '../hooks/useGet';
 // import Product from '../components/Product';
 
 const ProductScreen = ({match}) => {
 
     const { id } = useParams();
-    const paramId = match.params.id; //this and the statement above do the same thing
+    // const paramId = match.params.id; //this and the statement above do the same thing
     const history = useHistory();
-    const product = products.find( p => p._id === paramId); 
+    // const product = products.find( p => p._id === paramId); 
+    const {results: product} = useGet(`/api/products/${id}`);
 
     return (
         <>
@@ -68,11 +70,11 @@ const ProductScreen = ({match}) => {
             </Row>
 
             <button className='btn btn-secondary m-3 btn-outline-primary' variant='primary' onClick={()=>history.go(-1)}>Go Back</button>
-            <Link className='btn btn-primary m-3 btn-outline-secondary' to='home'>Go Home</Link>
+            <Link className='btn btn-primary m-3 btn-outline-secondary' to='/'>Go Home</Link>
 
             <p><sub className='text-muted'>
                 <span className='m-3'>My parameter is {id} </span>
-                <span>My array index is: {products.findIndex( prod => prod._id === id)}</span>
+                {/* <span>My array index is: {products.findIndex( prod => prod._id === id)}</span> */}
             </sub></p>
            {/* <Link to="" onClick={()=>history.go(-1)}>Go Back</Link> */}
         </>
