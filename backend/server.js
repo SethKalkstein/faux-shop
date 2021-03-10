@@ -4,8 +4,12 @@ import express from 'express';
 import dotenv from 'dotenv';
 // const products = require('./data/products');
 import products from './data/products.js'; //files need .js extension, packages don't
+import connectDB from './config/db.js';
 
 dotenv.config();
+
+connectDB();
+
 const app = express();
 
 app.get('/', (req, res) =>{
