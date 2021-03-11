@@ -4,8 +4,13 @@ import express from 'express';
 import dotenv from 'dotenv';
 // const products = require('./data/products');
 import products from './data/products.js'; //files need .js extension, packages don't
+import connectDB from './config/db.js';
+import colors from 'colors';
 
 dotenv.config();
+
+connectDB();
+
 const app = express();
 
 app.get('/', (req, res) =>{
@@ -26,4 +31,4 @@ app.get('/api/products/:id', (req, res) =>{
 const PORT = process.env.PORT || 666;
 const MODE = process.env.NODE_ENV || "no";
 
-app.listen(PORT, console.log(`Server running in ${MODE} mode on port ${PORT}`));
+app.listen(PORT, console.log(`Server running in ${MODE} mode on port ${PORT}`.yellow.bold));
